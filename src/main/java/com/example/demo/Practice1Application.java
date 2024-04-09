@@ -4,25 +4,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import User.User;
-import User.UserRepository;
+import com.example.demo.User.*;
+
+
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example.demo", "User"})
-
 public class Practice1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Practice1Application.class, args);
 	}
 	//creating products on load
-	
+	@Bean
+	@Order(1)
 	ApplicationRunner initProducts(ProductRepository productRepository) {
 		
 		List<String[]> productReviews = new ArrayList<>(Arrays.asList(
@@ -68,26 +71,27 @@ public class Practice1Application {
 					     ));
 			}	
 		};
+		
 	}
 	@Bean
-	ApplicationRunner initUsers(UserRepository userRepository) {
-		
+	@Order(2)
+	ApplicationRunner init(UserRepository UserRepository) {	
 		return args -> {
-			List<User> users = initializedUsers();
-	        for (User user : users) {
-	            userRepository.save(new User(user.getfName(),user.getlName(),user.getRole()));
+			List<UserClass> users = initializedUsers();
+	        for (UserClass user : users) {
+	            UserRepository.save(new UserClass(user.getfName(),user.getlName(),user.getRole()));
 	        }
 		};
 	
 	}
 	
-    public static List<User> initializedUsers() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("Emerson", "Silva", "Admin"));
-        users.add(new User("Michael", "Felker", "Admin"));
-        users.add(new User("Rubani", "Rubani", "Admin"));
-        users.add(new User("Rafael", "Oliveira", "User"));
-        users.add(new User("Corey", "La", "User"));
+    public static List<UserClass> initializedUsers() {
+        List<UserClass> users = new ArrayList<>();
+        users.add(new UserClass("Emerson", "Silva", "Admin"));
+        users.add(new UserClass("Michael", "Felker", "Admin"));
+        users.add(new UserClass("Rubani", "Rubani", "Admin"));
+        users.add(new UserClass("Rafael", "Oliveira", "User"));
+        users.add(new UserClass("Corey", "La", "User"));
 
         return users;
     }
