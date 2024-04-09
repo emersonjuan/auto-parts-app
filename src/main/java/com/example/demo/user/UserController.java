@@ -2,13 +2,17 @@ package com.example.demo.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +29,7 @@ public class UserController {
 	@PostMapping("/users")
 	public ResponseEntity<User> createUser(@RequestBody User user){
 		try {
-			User newUser = new User(user.getfName(), user.getfName(), user.getRole());
+			User newUser = new User(user.getfName(), user.getfName(), user.getRole(), user.getPassword());
 			userRepo.save(newUser);
 			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -53,4 +57,32 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@PutMapping("/users/{id}")
+	public ResponseEntity<User> updateCourse(@PathVariable("id") long id, @RequestBody User user) {
+		Optional<User> userData = userRepo.findById(id);
+
+		if (userData.isPresent()) {
+			User _user = userData.get();
+			_user.setfName(user.getfName());
+			_user.setlName(user.getlName());
+			_user.setRole(user.getRole());
+			_user.setPassword(user.getPassword());
+			return new ResponseEntity<>(userRepo.save(_user), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	
+	@DeleteMapping("/users/{id}")
+	public ResponseEntity<List<User>> deleteUser(@PathVariable("id")long id){
+		try {
+			userRepo.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 }
