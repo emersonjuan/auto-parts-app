@@ -10,11 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import User.User;
-import User.UserRepository;
+import com.example.demo.user.User;
+import com.example.demo.user.UserRepository;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example.demo", "User"})
+@ComponentScan("com.example.demo.user")
+
 
 public class Practice1Application {
 
@@ -23,6 +24,7 @@ public class Practice1Application {
 	}
 	//creating products on load
 	
+	@Bean
 	ApplicationRunner initProducts(ProductRepository productRepository) {
 		
 		List<String[]> productReviews = new ArrayList<>(Arrays.asList(
@@ -67,20 +69,22 @@ public class Practice1Application {
 					    productReviews.get(i)
 					     ));
 			}	
+		
 		};
 	}
+	
 	@Bean
 	ApplicationRunner initUsers(UserRepository userRepository) {
 		
 		return args -> {
-			List<User> users = initializedUsers();
-	        for (User user : users) {
-	            userRepository.save(new User(user.getfName(),user.getlName(),user.getRole()));
-	        }
+		List<User> users = initializedUsers();
+	    for (User user : users) {
+	        userRepository.save(new User(user.getfName(),user.getlName(),user.getRole()));
+	    	}
 		};
-	
 	}
 	
+	// Method to initialize the database
     public static List<User> initializedUsers() {
         List<User> users = new ArrayList<>();
         users.add(new User("Emerson", "Silva", "Admin"));

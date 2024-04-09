@@ -1,10 +1,14 @@
-package vehicle;
+package com.example.demo.vehicle;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-public class vehicle {
+@Entity
+@Table(name = "vehicles")
+public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +32,7 @@ public class vehicle {
 	public String getModel() {
 		return model;
 	}
-	public vehicle(Long id, String make, String model, Integer year) {
+	public Vehicle(Long id, String make, String model, Integer year) {
 		super();
 		this.id = id;
 		this.make = make;
