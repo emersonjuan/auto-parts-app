@@ -79,7 +79,8 @@ public class Practice1Application {
 		return args -> {
 		List<User> users = initializedUsers();
 	    for (User user : users) {
-	        userRepository.save(new User(user.getfName(),user.getlName(),user.getRole(), user.getPassword()));
+	        userRepository.save(new User(user.getfName(),user.getlName(),
+	        		user.getEmail(),user.getRole(), user.getPassword()));
 	    	}
 		};
 	}
@@ -87,11 +88,12 @@ public class Practice1Application {
 	// Method to initialize the database
     public static List<User> initializedUsers() {
         List<User> users = new ArrayList<>();
-        users.add(new User("Emerson", "Silva", "Admin","2024"));
-        users.add(new User("Michael", "Felker", "Admin", "2023"));
-        users.add(new User("Rubani", "Rubani", "Admin", "2022"));
-        users.add(new User("Rafael", "Oliveira", "User", "2021"));
-        users.add(new User("Corey", "La", "User", "2020"));
+        users.add(new User("Dhrisya ", "Suseelan", "dhrisya@test.ca", "Admin","2025"));
+        users.add(new User("Emerson", "Silva", "emerson@test.ca", "Admin","2024"));
+        users.add(new User("Michael", "Felker", "michael@test.ca","Admin", "2023"));
+        users.add(new User("Rubani", "Rubani", "rubani@test.ca", "Admin", "2022"));
+        users.add(new User("Rafael", "Oliveira", "rafael@test.ca", "User", "2021"));
+        users.add(new User("Corey", "La", "corey@test.ca", "User", "2020"));
 
         return users;
     }

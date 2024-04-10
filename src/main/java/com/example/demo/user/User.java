@@ -20,19 +20,23 @@ public class User {
 
 	@Column(name = "lName")
 	private String lName;
-
-	@Column(name = "role")
-	private String role;
-
+	
+	@Column(name = "email")
+	private String email;
+	
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "role")
+	private String role;
 
 	public User() {
 	}
 
-	public User(String fName, String lName, String role, String password) {
+	public User(String fName, String lName, String email, String role, String password) {
 		this.fName = fName;
 		this.lName = lName;
+		this.email = email;
 		this.role = role;
 		this.password = password;
 	}
@@ -59,6 +63,14 @@ public class User {
 
 	public void setlName(String lName) {
 		this.lName = lName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getRole() {
