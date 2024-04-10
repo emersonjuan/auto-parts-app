@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-
+@RequestMapping("/api")
 public class UserController {
 	
 	@Autowired
@@ -29,7 +29,7 @@ public class UserController {
 	@PostMapping("/users")
 	public ResponseEntity<User> createUser(@RequestBody User user){
 		try {
-			User newUser = new User(user.getfName(), user.getfName(), user.getEmail(), user.getRole(), user.getPassword());
+			User newUser = new User(user.getfName(), user.getfName(), user.getEmail(), user.getPassword(), user.getRole());
 			userRepo.save(newUser);
 			return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -67,8 +67,8 @@ public class UserController {
 			_user.setfName(user.getfName());
 			_user.setlName(user.getlName());
 			_user.setEmail(user.getEmail());
-			_user.setRole(user.getRole());
 			_user.setPassword(user.getPassword());
+			_user.setRole(user.getRole());
 			return new ResponseEntity<>(userRepo.save(_user), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

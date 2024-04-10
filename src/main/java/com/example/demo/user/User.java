@@ -33,12 +33,12 @@ public class User {
 	public User() {
 	}
 
-	public User(String fName, String lName, String email, String role, String password) {
+	public User(String fName, String lName, String email, String password,String role) {
 		this.fName = fName;
 		this.lName = lName;
 		this.email = email;
-		this.role = role;
 		this.password = password;
+		this.role = role;
 	}
 
 	public long getId() {
