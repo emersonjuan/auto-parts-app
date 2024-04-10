@@ -10,26 +10,27 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Column(name = "fName")
 	private String fName;
-	
+
 	@Column(name = "lName")
 	private String lName;
-	
+
 	@Column(name = "role")
 	private String role;
-	
+
 	@Column(name = "password")
 	private String password;
-	
-	public User() {}
-	
-	public User(String fName, String lName, String role, String passowrd) {
+
+	public User() {
+	}
+
+	public User(String fName, String lName, String role, String password) {
 		this.fName = fName;
 		this.lName = lName;
 		this.role = role;
@@ -67,13 +68,13 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 }
