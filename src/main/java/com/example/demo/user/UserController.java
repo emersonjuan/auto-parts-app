@@ -58,6 +58,18 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/users/{id}")
+	public ResponseEntity<User> getCourseById(@PathVariable("id") long id) {
+		Optional<User> userData = userRepo.findById(id);
+
+		if (userData.isPresent()) {
+			return new ResponseEntity<>(userData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	
 	@PutMapping("/users/{id}")
 	public ResponseEntity<User> updateCourse(@PathVariable("id") long id, @RequestBody User user) {
 		Optional<User> userData = userRepo.findById(id);

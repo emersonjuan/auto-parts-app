@@ -28,8 +28,7 @@ public class LoginController {
 			if (userData.isPresent()) {
 				String password = userData.get().getPassword();
 				if (password.equals(loginRequest.getPassword())) {
-					MessageResponse msg = new MessageResponse("User Authenticated!");
-					return new ResponseEntity<>(msg,HttpStatus.OK);
+					return new ResponseEntity<>(userData,HttpStatus.OK);
 				}
 				MessageResponse msg = new MessageResponse("Incorrect password");
 				return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
