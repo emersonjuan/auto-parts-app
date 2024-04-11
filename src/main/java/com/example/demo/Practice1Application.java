@@ -14,7 +14,7 @@ import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
 
 @SpringBootApplication
-@ComponentScan("com.example.demo.user")
+
 
 
 public class Practice1Application {
@@ -55,6 +55,13 @@ public class Practice1Application {
 				"Produces 6000K lighting compared to regular halogen lights that on average produce 3000K light",
 				"Ideal for newer vehicles with high electrical demands, aging vehicles now needing more power to turn over.",
 				"On-Off Road Rating Highway"));
+		List<String> ImageSources = new ArrayList<String>(Arrays.asList(
+				"/assets/battery.jpeg",
+				"/assets/filter.jpeg",
+				"/assets/headlight.jpeg",
+				"/assets/battery.jpeg",
+				"/assets/tire.jpeg"
+				));
 		
 		return ArgsAnnotationPointcut ->{
 			
@@ -66,7 +73,8 @@ public class Practice1Application {
 					    productDesc.get(i),
 					    productRating.get(i),
 					    producSpec.get(i),
-					    productReviews.get(i)
+					    productReviews.get(i),
+					    ImageSources.get(i)
 					     ));
 			}	
 		

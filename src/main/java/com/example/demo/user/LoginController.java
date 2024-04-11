@@ -22,8 +22,7 @@ public class LoginController {
 	UserRepository userRepo;
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody User loginRequest){
-		
+	public ResponseEntity<?> login(@RequestBody User loginRequest){		
 		try {
 			Optional<User> userData = userRepo.findByEmail(loginRequest.getEmail());
 			if (userData.isPresent()) {

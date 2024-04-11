@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.awt.Image;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -23,14 +24,16 @@ public class product {
 	double rating;
 	String specificationString;
 	String[] reviews;
+	String ImageSrc;
 	
 
 
     //product with name of product, price, number in stock, description, rating, specifications, reviews
 	public product(String nameString, double price, int numberInStock, String descriptionString, double rating,
-			String specificationString, String[] reviews) {
+			String specificationString, String[] reviews,String ImageSrc) {
 		super();
 		
+		this.ImageSrc=ImageSrc;
 		this.nameString = nameString;
 		this.price = price;
 		NumberInStock = numberInStock;
@@ -38,6 +41,14 @@ public class product {
 		this.rating = rating;
 		this.specificationString = specificationString;
 		this.reviews = reviews;
+	}
+
+	public String getImageSrc() {
+		return ImageSrc;
+	}
+
+	public void setImageSrc(String imageSrc) {
+		ImageSrc = imageSrc;
 	}
 
 	public String getSpecificationString() {
