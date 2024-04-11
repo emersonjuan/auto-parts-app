@@ -84,7 +84,7 @@ public class Practice1Application {
 			List<User> users = initializedUsers();
 			for (User user : users) {
 				userRepository.save(new User(user.getfName(), user.getlName(),
-						user.getEmail(), user.getRole(), user.getPassword()));
+						user.getEmail(), user.getPassword(),user.getRole() ));
 			}
 		};
 	}
