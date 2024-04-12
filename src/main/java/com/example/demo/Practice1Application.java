@@ -54,7 +54,7 @@ public class Practice1Application {
 				"Ideal for newer vehicles with high electrical demands, aging vehicles now needing more power to turn over.",
 				"On-Off Road Rating Highway"));
 		List<String> ImageSources = new ArrayList<String>(Arrays.asList(
-				"/assets/battery.jpeg",
+				"/assets/brakepad.jpeg",
 				"/assets/filter.jpeg",
 				"/assets/headlight.jpeg",
 				"/assets/battery.jpeg",

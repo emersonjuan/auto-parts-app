@@ -59,7 +59,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{id}")
-	public ResponseEntity<User> getCourseById(@PathVariable("id") long id) {
+	public ResponseEntity<User> getCourseById(@PathVariable long id) {
 		Optional<User> userData = userRepo.findById(id);
 
 		if (userData.isPresent()) {
@@ -71,7 +71,7 @@ public class UserController {
 
 	
 	@PutMapping("/users/{id}")
-	public ResponseEntity<User> updateCourse(@PathVariable("id") long id, @RequestBody User user) {
+	public ResponseEntity<User> updateCourse(@PathVariable long id, @RequestBody User user) {
 		Optional<User> userData = userRepo.findById(id);
 
 		if (userData.isPresent()) {
@@ -89,7 +89,7 @@ public class UserController {
 
 	
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<List<User>> deleteUser(@PathVariable("id")long id){
+	public ResponseEntity<List<User>> deleteUser(@PathVariable long id){
 		try {
 			userRepo.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

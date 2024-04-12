@@ -10,7 +10,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,11 +79,14 @@ public class ProductController {
 		return ResponseEntity.ok(reviews);
 	}
 
-	@PostMapping("/products")
+	@PostMapping("/product")
 	public ResponseEntity<product> postMethodName(@RequestBody product product) {
-		System.out.println(product);
+				
+		System.out.println(product.getLink());
 		productRepository.save(product);
+		
 		return ResponseEntity.ok(product);
+		
 	}
 
 	@DeleteMapping("/products/{id}")
